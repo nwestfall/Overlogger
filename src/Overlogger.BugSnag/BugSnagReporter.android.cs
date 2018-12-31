@@ -1,10 +1,99 @@
 ﻿using System;
-namespace Overlogger.AppCenter
+
+namespace Overlogger.BugSnag
 {
-	public class BugSnagReporter
+	/// <summary>
+	/// Android Bug snag reporter.
+	/// </summary>
+	public partial class BugSnagReporter : IReporter
 	{
-		public BugSnagReporter()
+		/// <summary>
+		/// Log the specified logLevel, message and tag.
+		/// </summary>
+		/// <param name="logLevel">Log level.</param>
+		/// <param name="message">Message.</param>
+		/// <param name="tag">Tag.</param>
+		public void Log(LogLevel logLevel, string message, string tag = null)
 		{
+			if (_logLevel >= logLevel)
+			{
+				message = (string.IsNullOrEmpty(tag)) ? message : $"[{tag}] {message}";
+				switch(logLevel)
+				{
+					case LogLevel.Verbose:
+						Android.Util.Log.Verbose(LOG_TAG, message);
+						break;
+					case LogLevel.Debug:
+						Android.Util.Log.Debug(LOG_TAG, message);
+						break;
+					case LogLevel.Info:
+						Android.Util.Log.Info(LOG_TAG, message);
+						break;
+					case LogLevel.Warn:
+						Android.Util.Log.Warn(LOG_TAG, message);
+						break;
+					case LogLevel.Error:
+						Android.Util.Log.Error(LOG_TAG, message);
+						break;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Log the specified logLevel, message, exception and tag.
+		/// </summary>
+		/// <param name="logLevel">Log level.</param>
+		/// <param name="message">Message.</param>
+		/// <param name="exception">Exception.</param>
+		/// <param name="tag">Tag.</param>
+		public void Log(LogLevel logLevel, string message, Exception exception, string tag = null)
+		{
+			if (_logLevel >= logLevel)
+			{
+				message = (string.IsNullOrEmpty(tag)) ? message : $"[{tag}] {message}";
+				switch (logLevel)
+				{
+					case LogLevel.Verbose:
+						Android.Util.Log.Verbose(LOG_TAG, message);
+						break;
+					case LogLevel.Debug:
+						Android.Util.Log.Debug(LOG_TAG, message);
+						break;
+					case LogLevel.Info:
+						Android.Util.Log.Info(LOG_TAG, message);
+						try
+						{
+							_bugsnagClient.Notify(exception, Bugsnag.Severity.Info);
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine($"{LOG_TAG} Error while reporting back to Bugsnag - {ex.Message}");
+						}
+						break;
+					case LogLevel.Warn:
+						Android.Util.Log.Warn(LOG_TAG, message);
+						try
+						{
+							_bugsnagClient.Notify(exception, Bugsnag.Severity.Warning);
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine($"{LOG_TAG} Error while reporting back to Bugsnag - {ex.Message}");
+						}
+						break;
+					case LogLevel.Error:
+						Android.Util.Log.Error(LOG_TAG, message);
+						try
+						{
+							_bugsnagClient.Notify(exception, Bugsnag.Severity.Error);
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine($"{LOG_TAG} Error while reporting back to Bugsnag - {ex.Message}");
+						}
+						break;
+				}
+			}
 		}
 	}
 }

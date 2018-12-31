@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks></TargetFrameworks>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80;MonoAndroid81;</TargetFrameworks>
-    <AssemblyName>Overlogger.Console</AssemblyName>
-    <RootNamespace>Overlogger.Console</RootNamespace>
-    <PackageId>Overlogger.Console</PackageId>
+    <AssemblyName>Overlogger.AppCenter</AssemblyName>
+    <RootNamespace>Overlogger.AppCenter</RootNamespace>
+    <PackageId>Overlogger.AppCenter</PackageId>
     <Summary>Switch or migrate logging services without rewriting all your code</Summary>
     <PackageTags>logging, netstandard, xamarin, windows, ios, android, xamarin.forms, log, metrics, analytics</PackageTags>
-    <Title>Overlogger.Console</Title>
+    <Title>Overlogger.AppCenter</Title>
     <Description>Overlogger: A way to log/track metrics in your app that allows you to switch between backends freely</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -37,7 +37,7 @@
     <!-- sourcelink: Include PDB in the built .nupkg -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-    
+
   <ItemGroup>
     <Compile Remove="**\*.cs" />    
   </ItemGroup>
@@ -47,14 +47,23 @@
   </ItemGroup>
     
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <PackageReference Include="Microsoft.AppCenter" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.12.0" />
     <Compile Include="**\*.netstandard.cs" />
   </ItemGroup>
     
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <PackageReference Include="Microsoft.AppCenter" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.12.0" />
     <Compile Include="**\*.android.cs" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <PackageReference Include="Microsoft.AppCenter" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.12.0" />
     <Compile Include="**\*.ios.cs" />
   </ItemGroup>
 

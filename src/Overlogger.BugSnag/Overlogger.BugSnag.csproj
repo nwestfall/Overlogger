@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks></TargetFrameworks>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80;MonoAndroid81;</TargetFrameworks>
-    <AssemblyName>Overlogger.AppCenter</AssemblyName>
-    <RootNamespace>Overlogger.AppCenter</RootNamespace>
-    <PackageId>Overlogger.AppCenter</PackageId>
-    <Summary>Switch or migrate logging services without rewritting all your code</Summary>
+    <AssemblyName>Overlogger.BugSnag</AssemblyName>
+    <RootNamespace>Overlogger.BugSnag</RootNamespace>
+    <PackageId>Overlogger.BugSnag</PackageId>
+    <Summary>Switch or migrate logging services without rewriting all your code</Summary>
     <PackageTags>logging, netstandard, xamarin, windows, ios, android, xamarin.forms, log, metrics, analytics</PackageTags>
-    <Title>Overlogger.AppCenter</Title>
+    <Title>Overlogger.BugSnag</Title>
     <Description>Overlogger: A way to log/track metrics in your app that allows you to switch between backends freely</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -37,10 +37,6 @@
     <!-- sourcelink: Include PDB in the built .nupkg -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
-    
-  <ItemGroup Condition=" '$(Configuration)'=='Release' And '$(OS)' == 'Windows_NT' ">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />    
-  </ItemGroup>
     
   <ItemGroup>
     <Compile Remove="**\*.cs" />    
