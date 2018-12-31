@@ -1,5 +1,8 @@
 # Overlogger
 
+[![Build Status](https://dev.azure.com/nathanwestfall/Overlogger/_apis/build/status/Overlogger-CI?branchName=master)](https://dev.azure.com/nathanwestfall/Overlogger/_build/latest?definitionId=16?branchName=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/nwestfall/overlogger/badge)](https://www.codefactor.io/repository/github/nwestfall/overlogger)
+
 Logging is something that every application needs, but it shouldn't be a burden to change analytic/crash providers.  Write your app once with overlogger and then switch out providers on the fly.
 
 ## Why did I make this?
@@ -9,6 +12,13 @@ Being an Xamarin developer and going from Xamarin Insights, to HockeyApp, and th
  - NETStandard 2.0
  - iOS (10+)
  - Android (4.4+)
+
+## Available Nuget Packages
+ - Overlogger [![NuGet](https://img.shields.io/nuget/v/Overlogger.svg?label=NuGet)](https://www.nuget.org/packages/Overlogger/)
+ - Overlogger.AppCenter [![NuGet](https://img.shields.io/nuget/v/Overlogger.AppCenter.svg?label=NuGet)](https://www.nuget.org/packages/Overlogger.AppCenter/)
+ - Overlogger.BugSnag [![NuGet](https://img.shields.io/nuget/v/Overlogger.BugSnag.svg?label=NuGet)](https://www.nuget.org/packages/Overlogger.BugSnag/)
+ - Overlogger.Console [![NuGet](https://img.shields.io/nuget/v/Overlogger.Console.svg?label=NuGet)](https://www.nuget.org/packages/Overlogger.Console/)
+
 
 ## How does it work
 
